@@ -8,198 +8,6 @@
     <meta name="theme-color" content="#111820">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        html, body { height:100%; overflow:hidden; background:#0b0e14; }
-        body { display:flex; justify-content:center; align-items:center; }
-        .app-wrapper { width:100%; height:100%; display:flex; justify-content:center; align-items:center; }
-        
-        /* ========== OVERLAY SYARAT ========== */
-        #termsOverlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(8px);
-            z-index: 999999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.4s ease;
-        }
-        #termsOverlay.hidden {
-            display: none !important;
-        }
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-        #termsOverlay .terms-box {
-            background: #141d2b;
-            border: 1px solid #2a3a50;
-            border-radius: 20px;
-            padding: 32px 28px;
-            max-width: 380px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
-            animation: scaleIn 0.4s ease;
-        }
-        @keyframes scaleIn {
-            0% { transform: scale(0.9); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        #termsOverlay .terms-box .icon {
-            font-size: 48px;
-            margin-bottom: 8px;
-        }
-        #termsOverlay .terms-box h2 {
-            font-size: 20px;
-            font-weight: 700;
-            color: #fbbf24;
-            margin-bottom: 4px;
-        }
-        #termsOverlay .terms-box p {
-            font-size: 13px;
-            color: #8896b0;
-            line-height: 1.6;
-            margin-bottom: 12px;
-        }
-        #termsOverlay .terms-box .terms-text {
-            background: #0f172a;
-            border-radius: 12px;
-            padding: 12px 14px;
-            text-align: left;
-            font-size: 12px;
-            color: #5a6a84;
-            max-height: 140px;
-            overflow-y: auto;
-            margin-bottom: 16px;
-            border: 1px solid #1f2a3a;
-            line-height: 1.6;
-        }
-        #termsOverlay .terms-box .terms-text::-webkit-scrollbar {
-            width: 2px;
-        }
-        #termsOverlay .terms-box .terms-text::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
-        #termsOverlay .terms-box .terms-text::-webkit-scrollbar-thumb {
-            background: #4b5a77;
-            border-radius: 10px;
-        }
-        #termsOverlay .terms-box .terms-text strong {
-            color: #e0e6f0;
-        }
-        #termsOverlay .terms-box .terms-actions {
-            display: flex;
-            gap: 10px;
-        }
-        #termsOverlay .terms-box .terms-actions button {
-            flex: 1;
-            padding: 12px;
-            border-radius: 40px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            transition: 0.2s;
-        }
-        #termsOverlay .terms-box .terms-actions .btn-agree {
-            background: #34d399;
-            color: #0b0e14;
-        }
-        #termsOverlay .terms-box .terms-actions .btn-agree:hover {
-            background: #059669;
-        }
-        #termsOverlay .terms-box .terms-actions .btn-decline {
-            background: #1f2a3a;
-            color: #5a6a84;
-            border: 1px solid #4b5a77;
-        }
-        #termsOverlay .terms-box .terms-actions .btn-decline:hover {
-            background: #2a3a50;
-        }
-        
-        /* ========== IKLAN BANNER ========== */
-        #adsBanner {
-            display: none;
-            margin-top: 12px;
-            width: 100%;
-        }
-        #adsBanner.show {
-            display: block;
-            animation: fadeSlide 0.3s ease;
-        }
-        #adsBanner .ads-box {
-            background: #0f172a;
-            border-radius: 12px;
-            border: 1px solid #2a3a50;
-            padding: 10px;
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            margin: auto;
-        }
-        #adsBanner .ads-box iframe {
-            border: 0;
-            padding: 0;
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
-            display: block;
-            margin: auto;
-            border-radius: 8px;
-            background: #0f172a;
-        }
-        #adsBanner .ads-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 8px;
-        }
-        #adsBanner .ads-actions button {
-            flex: 1;
-            padding: 10px;
-            border-radius: 40px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            font-size: 13px;
-            transition: 0.2s;
-        }
-        #adsBanner .ads-actions .btn-claim {
-            background: #34d399;
-            color: #0b0e14;
-        }
-        #adsBanner .ads-actions .btn-claim:hover {
-            background: #059669;
-        }
-        #adsBanner .ads-actions .btn-claim:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        #adsBanner .ads-actions .btn-skip {
-            background: #1f2a3a;
-            color: #5a6a84;
-            border: 1px solid #4b5a77;
-        }
-        #adsBanner .ads-actions .btn-skip:hover {
-            background: #2a3a50;
-        }
-        #adsBanner .countdown-text {
-            text-align: center;
-            color: #fbbf24;
-            font-size: 13px;
-            font-weight: 600;
-            margin-top: 6px;
-        }
-        @keyframes fadeSlide {
-            0% { opacity: 0; transform: translateY(10px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-    </style>
 </head>
 <body>
 <div class="app-wrapper">
@@ -217,45 +25,35 @@
 
         <!-- HOME -->
         <section class="page active" id="page-home">
-            <div class="farm-area">
-                <i class="fas fa-coins coin-icon-big"></i>
-                <h2>Farming Coin</h2>
-                <p>Klik tombol di bawah, tonton iklan, dapatkan <strong>+1 Coin</strong></p>
-                
-                <button class="farm-btn" id="farmBtn">
-                    <i class="fas fa-play-circle"></i> Tonton Iklan & Farming
-                </button>
-                
-                <!-- ========================================== -->
-                <!-- IKLAN A-ADS (MUNCUL SETELAH SETUJU)         -->
-                <!-- ========================================== -->
-                <div id="adsBanner">
-                    <div class="ads-box">
-                        <div id="frame" style="width:100%; margin:auto; position:relative; z-index:1;">
-                            <iframe data-aa='2453009' 
-                                    src='//acceptable.a-ads.com/2453009/?size=300x250'
-                                    style='border:0; padding:0; width:100%; height:250px; overflow:hidden; display:block; margin:auto; border-radius:8px; background:#0f172a;'>
-                            </iframe>
-                        </div>
+            <!-- ========================================== -->
+            <!-- IKLAN DI BAWAH MIKOCUAN (KLIK → TAB + COIN) -->
+            <!-- ========================================== -->
+            <div class="ads-home-banner" id="homeAdBanner">
+                <div class="ads-box">
+                    <div style="width:100%; margin:auto; position:relative; z-index:1;">
+                        <iframe data-aa='2453009' 
+                                src='//acceptable.a-ads.com/2453009/?size=300x250'
+                                style='border:0; padding:0; width:100%; height:150px; overflow:hidden; display:block; margin:auto; border-radius:8px; background:#0f172a;'>
+                        </iframe>
                     </div>
-                    <div class="countdown-text" id="adsCountdown">⏳ Klik tombol "Tonton Iklan & Farming" untuk mulai</div>
-                    <div class="ads-actions">
-                        <button class="btn-claim" id="claimCoinBtn" disabled>⏳ Tunggu...</button>
-                        <button class="btn-skip" id="skipAdBtn">✕ Lewati</button>
-                    </div>
-                </div>
-
-                <div class="daily-bonus-box">
-                    <div class="bonus-text"><i class="fas fa-gift" style="color:#f59e0b;"></i> Daily Bonus: <strong id="dailyBonusAmount">+5 Coin</strong> <span id="dailyCountdown"></span></div>
-                    <button class="daily-claim-btn" id="dailyClaimBtn">Claim</button>
+                    <!-- TOMBOL DETEKSI TAK TERLIHAT (DI DALAM IKLAN) -->
+                    <div id="invisibleAdDetector"></div>
                 </div>
             </div>
 
+            <!-- DAILY BONUS -->
+            <div class="daily-bonus-box">
+                <div class="bonus-text"><i class="fas fa-gift" style="color:#f59e0b;"></i> Daily Bonus: <strong id="dailyBonusAmount">+5 Coin</strong> <span id="dailyCountdown"></span></div>
+                <button class="daily-claim-btn" id="dailyClaimBtn">Claim</button>
+            </div>
+
+            <!-- PARTNER APLIKASI -->
             <div class="app-logo-section">
                 <h3><i class="fas fa-th-large" style="color:#a855f7;"></i> Partner Aplikasi</h3>
                 <div class="app-logo-grid" id="appLogoGrid"></div>
             </div>
 
+            <!-- ETALASE PREMIUM -->
             <h3><i class="fas fa-store" style="color:#a855f7;"></i> Etalase Premium <span>Tukar coin dengan produk digital</span></h3>
             <div class="store-grid" id="storeGrid"></div>
 
@@ -349,9 +147,7 @@
     </div>
 </div>
 
-<!-- ========================================== -->
-<!-- POPUP SYARAT (SEBELUM LOGIN)              -->
-<!-- ========================================== -->
+<!-- OVERLAY SYARAT -->
 <div id="termsOverlay">
     <div class="terms-box">
         <div class="icon">⚠️</div>
@@ -397,6 +193,19 @@
         <div class="big-icon" style="font-size:48px;">🔐</div>
         <h3 id="loginTitle">Login</h3>
         <p id="loginDesc" style="font-size:13px; color:#8896b0;">Masuk untuk melanjutkan</p>
+        
+        <div class="ads-in-modal">
+            <div class="ads-box">
+                <div style="width:100%; margin:auto; position:relative; z-index:1;">
+                    <iframe data-aa='2453009' 
+                            src='//acceptable.a-ads.com/2453009/?size=300x250'
+                            style='border:0; padding:0; width:100%; height:150px; overflow:hidden; display:block; margin:auto; border-radius:6px; background:#0f172a;'>
+                    </iframe>
+                </div>
+            </div>
+            <div class="countdown-text" id="loginAdsCountdown">📺 Iklan di halaman login</div>
+        </div>
+        
         <button id="googleLoginBtn" style="background:#ffffff; border:none; color:#333; padding:12px; border-radius:40px; width:100%; font-weight:600; cursor:pointer; margin-bottom:12px; display:flex; align-items:center; justify-content:center; gap:10px;">
             <img src="https://www.google.com/favicon.ico" style="width:20px; height:20px;"> Login dengan Google
         </button>
